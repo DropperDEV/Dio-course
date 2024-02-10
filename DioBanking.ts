@@ -9,6 +9,7 @@ class Account {
     this.balance = balance;
   }
 
+
   deposit = (entrada: number) => {
     if (entrada > 0) {
       this.balance += entrada;
@@ -23,6 +24,22 @@ class Account {
   };
 }
 
+class AccAdmin extends Account{
+    authorization: boolean = false;
+    constructor(name:string,accountNumber:number,authorization:boolean){
+        super(name,accountNumber,0)
+        this.authorization = authorization
+    }
+
+    setAuthorization(entrada:boolean){
+        this.authorization = entrada;
+        this.authorization ? console.log("Conta autorizada") : console.log("Acesso restrito")
+    }
+}
 const newAccount: Account = new Account("James", 4023041, 0);
 newAccount.deposit(40);
 newAccount.withdraw(10);
+
+const newAdmin: AccAdmin = new AccAdmin("Jotinha",55,false)
+newAdmin.setAuthorization(true);
+newAdmin.setAuthorization(false)
