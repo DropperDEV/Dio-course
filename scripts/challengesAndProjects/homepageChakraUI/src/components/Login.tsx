@@ -24,7 +24,9 @@ export function Login({ setLoginShow }: ILogin) {
 
   function onClickLogin() {
     setLoginShow(true);
+    alert("Seja bem vindo!")
   }
+
   return (
     <ChakraProvider>
       <Box
@@ -74,7 +76,7 @@ export function Login({ setLoginShow }: ILogin) {
             </InputGroup>
           </Box>
 
-          <ButtonLogin onClickLogin={onClickLogin}/>
+          <ButtonLogin onClickLogin={onClickLogin} />
         </Flex>
       </Box>
     </ChakraProvider>
