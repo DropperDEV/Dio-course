@@ -6,11 +6,11 @@ export const Layout = ({ children }: any) => {
   return (
     <>
       <ChakraProvider>
-        <Box minHeight="100vh" backgroundColor="#9413dc" padding="25px">
-          <Header />
+        <Header />
+        <Box minHeight="100vh" backgroundColor="#ffffff" padding="25px">
           {children}
-          <Footer />
         </Box>
+        <Footer />
       </ChakraProvider>
     </>
   );

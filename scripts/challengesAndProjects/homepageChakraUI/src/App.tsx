@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import Login from "./components/Login";
+import { useState } from "react";
 import { Layout } from "./components/Layout";
 import { Card } from "./components/Card";
 import { IMockData } from "./interface/data";
+import "./reset.css";
+import { Login } from "./components/Login";
 
 const staticData: IMockData = {
   id: 414,
