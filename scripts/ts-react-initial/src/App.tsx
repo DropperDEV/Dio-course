@@ -1,14 +1,20 @@
 import {
   ChakraProvider,
   Flex,
-  Center,
   Input,
   Button,
   Box,
   FormLabel,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
+import { useState } from "react";
 
 function App() {
+  const [show, setShow] = useState(false);
+  const handleSetShow = () => {
+    setShow(!show);
+  };
   return (
     <ChakraProvider>
       <Box
@@ -20,21 +26,44 @@ function App() {
       >
         <Flex
           flexDirection={"column"}
-          backgroundColor={"#e1dede"}
+          backgroundColor={"#fffffff4"}
           minW={"800px"}
+          p={6}
+          gap={6}
         >
-          <FormLabel>Insira seu email</FormLabel>
-          <Input
-            placeholder="Email"
-            _placeholder={{ opacity: 1, color: "gray.900" }}
-            p={6}
-          />
-          <FormLabel>Insira sua senha</FormLabel>
-          <Input
-            placeholder="Senha"
-            _placeholder={{ opacity: 1, color: "gray.900" }}
-            p={6}
-          />
+          <Box>
+            <FormLabel fontSize={22}>Insira seu email:</FormLabel>
+            <Input
+              placeholder="Email"
+              _placeholder={{ opacity: 1, color: "gray.900" }}
+              width={"100%"}
+              size={"md"}
+              variant={"outline"}
+              backgroundColor={"#e1dede"}
+            />
+          </Box>
+
+          <Box mb={4}>
+            <FormLabel fontSize={22}>Insira sua senha:</FormLabel>
+            <InputGroup>
+              <Input
+                placeholder="Senha"
+                type={show ? "text" : "password"}
+                _placeholder={{ opacity: 1, color: "gray.900" }}
+                width={"100%"}
+                size={"md"}
+                pr={20}
+                variant={"outline"}
+                backgroundColor={"#e1dede"}
+              />
+              <InputRightElement width='4.5rem' mr={1}>
+                <Button h='1.75rem' size='sm' onClick={handleSetShow}>
+                  {show ? "Esconder" : "Mostrar"}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+          </Box>
+
           <Button colorScheme={"whatsapp"}>Entrar</Button>
         </Flex>
       </Box>
