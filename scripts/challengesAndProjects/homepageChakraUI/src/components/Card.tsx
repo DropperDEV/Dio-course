@@ -1,4 +1,6 @@
 import { Heading, Flex, Text } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { api } from "../services/api";
 
 interface ICard {
   id: number;
@@ -7,26 +9,35 @@ interface ICard {
 }
 
 export const Card = ({ id, paragraph, details }: ICard) => {
+  useEffect(() => {
+    const getData = async () => {
+      const data = await api;
+      console.log(data);
+    };
+
+    getData();
+  });
+  
   return (
     <Flex flexDirection={"column"} gap={10}>
       <Heading fontSize={"5xl"}>Informações do usuário:</Heading>
       <Text fontSize={"3xl"} display={"flex"} gap={4}>
         O seu id é:
-        <Text backgroundColor={"pink.300"} borderRadius={"xl"}  px={4}>
+        <Text backgroundColor={"pink.300"} borderRadius={"xl"} px={4}>
           {" "}
           {id}{" "}
         </Text>
       </Text>
       <Text fontSize={"3xl"} display={"flex"} gap={4}>
         um resumo sobre você:
-        <Text backgroundColor={"pink.300"} borderRadius={"xl"}  px={4}>
+        <Text backgroundColor={"pink.300"} borderRadius={"xl"} px={4}>
           {" "}
           {paragraph}
         </Text>
       </Text>
       <Text fontSize={"3xl"} display={"flex"} gap={4}>
         detalhes sobre ti:
-        <Text backgroundColor={"pink.300"} borderRadius={"xl"}  px={4}>
+        <Text backgroundColor={"pink.300"} borderRadius={"xl"} px={4}>
           {" "}
           {details}
         </Text>
