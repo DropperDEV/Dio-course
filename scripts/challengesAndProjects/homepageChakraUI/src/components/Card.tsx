@@ -1,23 +1,21 @@
 import { Heading, Flex, Text } from "@chakra-ui/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { api } from "../services/api";
+import { IData } from "../interface/data";
 
-interface ICard {
-  id: number;
-  paragraph: string;
-  details: string;
-}
+export const Card = () => {
+  const [dataAccount, setDataAccount] = useState<(null | IData)>();
 
-export const Card = ({ id, paragraph, details }: ICard) => {
   useEffect(() => {
     const getData = async () => {
-      const data = await api;
+      const data: any | IData = await api;
       console.log(data);
+      setDataAccount(data)
     };
 
     getData();
   });
-  
+
   return (
     <Flex flexDirection={"column"} gap={10}>
       <Heading fontSize={"5xl"}>Informações do usuário:</Heading>
@@ -25,21 +23,21 @@ export const Card = ({ id, paragraph, details }: ICard) => {
         O seu id é:
         <Text backgroundColor={"pink.300"} borderRadius={"xl"} px={4}>
           {" "}
-          {id}{" "}
+          {dataAccount?.id}{" "}
         </Text>
       </Text>
       <Text fontSize={"3xl"} display={"flex"} gap={4}>
         um resumo sobre você:
         <Text backgroundColor={"pink.300"} borderRadius={"xl"} px={4}>
           {" "}
-          {paragraph}
+          {dataAccount?.paragraph}
         </Text>
       </Text>
       <Text fontSize={"3xl"} display={"flex"} gap={4}>
         detalhes sobre ti:
         <Text backgroundColor={"pink.300"} borderRadius={"xl"} px={4}>
           {" "}
-          {details}
+          {dataAccount?.details}
         </Text>
       </Text>
     </Flex>
