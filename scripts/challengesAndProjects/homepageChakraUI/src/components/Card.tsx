@@ -1,4 +1,4 @@
-import { Heading, Flex,SimpleGrid,  } from "@chakra-ui/react";
+import { Heading, Flex, SimpleGrid, Center, Spinner } from "@chakra-ui/react";
 import CardBlock from "./CardBlock";
 import { useEffect, useState } from "react";
 import { api } from "../services/api";
@@ -21,20 +21,29 @@ export const Card = () => {
   return (
     <Flex flexDirection={"column"} gap={10}>
       <Heading fontSize={"5xl"}>Informações do usuário:</Heading>
-      <SimpleGrid columns={2} spacing={14}>
-        <CardBlock>
-          <CardInfo title={"O seu id é:"} find={dataAccount?.id} />
-          <CardInfo
-            title={"um resumo sobre você:"}
-            find={dataAccount?.paragraph}
-          />
-          <CardInfo title={"detalhes sobre ti:"} find={dataAccount?.details} />
-        </CardBlock>
-        <CardBlock>
-          <CardInfo title={"saldo:"} find={dataAccount?.balance} />
-          <CardInfo title={"sua conta é:"} find={dataAccount?.tipoConta} />
-        </CardBlock>
-      </SimpleGrid>
+      {dataAccount === null || dataAccount === undefined ? (
+        <Center>
+          <Spinner />
+        </Center>
+      ) : (
+        <SimpleGrid columns={2} spacing={14}>
+          <CardBlock>
+            <CardInfo title={"O seu id é:"} find={dataAccount?.id} />
+            <CardInfo
+              title={"um resumo sobre você:"}
+              find={dataAccount?.paragraph}
+            />
+            <CardInfo
+              title={"detalhes sobre ti:"}
+              find={dataAccount?.details}
+            />
+          </CardBlock>
+          <CardBlock>
+            <CardInfo title={"saldo:"} find={dataAccount?.balance} />
+            <CardInfo title={"sua conta é:"} find={dataAccount?.tipoConta} />
+          </CardBlock>
+        </SimpleGrid>
+      )}
     </Flex>
   );
 };
