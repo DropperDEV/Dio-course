@@ -11,20 +11,19 @@ import {
 import { useState } from "react";
 
 import ButtonLogin from "./Button";
+import { useNavigate } from "react-router-dom";
 
-interface ILogin {
-  setLoginShow: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-export function Login({ setLoginShow }: ILogin) {
+export function Login() {
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
   const handleSetShow = () => {
     setShow(!show);
   };
 
   function onClickLogin() {
-    setLoginShow(true);
     alert("Seja bem vindo!")
+    navigate("/conta");
   }
 
   return (

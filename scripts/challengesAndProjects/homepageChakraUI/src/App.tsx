@@ -1,22 +1,18 @@
-import { useState } from "react";
 import { Layout } from "./components/Layout";
-import { Card } from "./components/Card";
 import "./reset.css";
 import { Login } from "./components/Login";
-
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Card } from "./components/Card";
 
 function App() {
-  const [loginShow, setLoginShow] = useState<boolean>(false);
-
   return (
-    <Layout>
-      {loginShow ? (
-        <Card
-        />
-      ) : (
-        <Login setLoginShow={setLoginShow} />
-      )}
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Login />} /> <Route path="/conta" element={<Card/>} />
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
